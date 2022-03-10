@@ -1,6 +1,6 @@
-KodeKloud-Engineer Linux Tasks
+**KodeKloud-Engineer Linux Tasks**
 
-#1 Linux Run Levels
+**#1 Linux Run Levels**
 
  New tools have been installed on the app server in Stratos Datacenter. Some of these tools can only be managed from the graphical user interface. Therefore, there are requirements for these app servers.
 
