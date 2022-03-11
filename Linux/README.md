@@ -7,7 +7,7 @@
 On all App servers in Stratos Datacenter change the default run level so that they can boot in GUI (graphical user interface) by default.
 
 
-#2 Linux Remote Copy
+**#2 Linux Remote Copy**
 
 One of the Nautilus developers has copied confidential data on the jump host in Stratos DC. That data must be copied to one of the app servers. Because developers do not have access to app servers, they asked the system admins team to accomplish the task for them.
 
