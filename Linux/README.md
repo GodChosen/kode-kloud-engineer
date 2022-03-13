@@ -19,3 +19,12 @@ Copy /tmp/nautilus.txt.gpg file from jump server to App Server 1 at location /ho
 The system admins team of xFusionCorp Industries has set up a new tool on all app servers, as they have a requirement to create a service user account that will be used by that tool. They are finished with all apps except for App 2 in Stratos Datacenter.
 
 Create a user named anita in App Server 2 without a home directory.
+
+
+**#4 Linux Services**
+
+ As per details shared by the development team, the new application release has some dependencies on the back end. There are some packages/services that need to be installed on all app servers under Stratos Datacenter. As per requirements please perform the following steps:
+
+a. Install httpd package on all the application servers.
+
+b. Once installed, make sure it is enabled to start during boot.
