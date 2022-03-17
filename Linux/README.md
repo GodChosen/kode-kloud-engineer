@@ -48,3 +48,19 @@ xFusionCorp Industries security team recently did a security audit of their infr
 
 Install the required packages of SElinux on App server 1 in Stratos Datacenter and disable it permanently for now, it will be enabled after making some required configuration changes on this host. For now don't worry about rebooting the server since there is already a scheduled reboot tonight in maintenance window. Also ignore the status of SElinux whatever it shows from command line right now but the final status after reboot should be disabled.
 
+
+**#8 Linux SSH Authentication**
+
+The system admins team of xFusionCorp Industries has set up some scripts on jump host that run on regular intervals and perform operations on all app servers in Stratos Datacenter. To make these scripts work properly we need to make sure thor user on jump host haspassword-less SSH access to all app servers through their respective sudo users. Based on the requirements, perform the following:
+
+Set up a password-less authentication for user thor on jump host to all app servers through their respective sudo users.
+
+
+**#9 Linux NTP Setup**
+
+The system admin team of xFusionCorp Industries has noticed an issue with some servers in Stratos Datacenter where some of the servers are not in sync w.r.t time. Because of this, several application functionalities have been impacted. To fix this issue the team has started using common standard NTP servers. They are finished with most of the servers except App Server 2. Therefore, perform the following tasks on this server.
+
+Install and configure NTP server on App Server 2.
+Add NTP server 1.sg.pool.ntp.org in NTP configuration on App Server 2.
+
+Please do not try to start/restart/stop ntp service, as we already have a restart for this service scheduled for tonight and we don't want these changes to be applied right now.
