@@ -64,3 +64,37 @@ Install and configure NTP server on App Server 2.
 Add NTP server 1.sg.pool.ntp.org in NTP configuration on App Server 2.
 
 Please do not try to start/restart/stop ntp service, as we already have a restart for this service scheduled for tonight and we don't want these changes to be applied right now.
+
+
+
+**#10 MariaDB Troubleshooting**
+
+There is a critical issue going on with the Nautilus application in Stratos DC. The production support team identified that the application is unable to connect to the database. After digging into the issue, the team found that mariadb service is down on the database server.
+
+Look into the issue and fix the same.
+
+
+**#11 Linux Postfix Troubleshooting**
+
+Some users of the monitoring app have reported issues with xFusionCorp Industries mail server. They have a mail server in Stork DC where they are using postfix mail transfer agent. Postfix service seems to fail. Try to identify the root cause and fix it
+
+
+
+**#12 Linux Collaborative Directories**
+
+The Nautilus team doesn't want its data to be accessed by any of the other groups/teams due to security reasons and want their data to be strictly accessed by the dbadmin group of the team.
+
+Setup a collaborative directory /dbadmin/data on Nautilus App 1 server in Stratos Datacenter.
+
+The directory should be group owned by the group dbadmin and the group should own the files inside the directory. The directory should be read/write/execute to the group owners, and others should not have any access.
+
+
+
+**#13 Create a Cron Job**
+
+The Nautilus system admins team has prepared scripts to automate several day-to-day tasks. They want them to be deployed on all app servers in Stratos DC on a set schedule. Before that they need to test similar functionality with a sample cron job. Therefore, perform the steps below:
+
+a. Install cronie package on all Nautilus app servers and start crond service.
+
+b. Add a cron */5 * * * * echo hello > /tmp/cron_text for root user.
+
