@@ -4,11 +4,11 @@
 => ssh username@app-server1
 => sudo su
 
-- install haproxy on server 1
-=> yum install haproxy -y
+- install squid on server 1
+=> yum install squid -y
 
 - Configure squid logs rotation to monthly ant to 3 rotation
-=> vi /etc/logrotate.d/haproxy
+=> vi /etc/logrotate.d/squid
 
 /var/log/squid/*.log {
 
@@ -43,9 +43,9 @@
 }
 
 
-- Start the haproxy
-=> systemctl start haproxy
-=> systemctl enable haproxy
+- Start the squid
+=> systemctl start squid
+=> systemctl enable squid
 
 
 Note: repeat the steps above in server 2 & 3.
