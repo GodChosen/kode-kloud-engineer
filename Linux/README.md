@@ -103,3 +103,90 @@ b. Add a cron */5 * * * * echo hello > /tmp/cron_text for root user.
 A developer rose has been assigned Nautilus project temporarily as a backup resource. As a temporary resource for this project, we need a temporary user for rose. It’s a good idea to create a user with a set expiration date so that the user won't be able to access servers beyond that point.
 
 Therefore, create a user named rose on the App Server 1. Set expiry date to 2021-02-17 in Stratos Datacenter. Make sure the user is created as per standard and is in lowercase.
+
+
+**#15 Linux User Files**
+
+There was some users data copied on Nautilus App Server 3 at /home/usersdata location by the Nautilus production support team in Stratos DC. Later they found that they mistakenly mixed up different user data there. Now they want to filter out some user data and copy it to another location. Find the details below:
+
+On App Server 3 find all files (not directories) owned by user kirsty inside /home/usersdata directory and copy them all while keeping the folder structure (preserve the directories path) to /news directory.
+
+
+
+**#16 Apache Redirect**
+
+The Nautilus devops team got some requirements related to some Apache config changes. They need to setup some redirects for some URLs. There might be some more changes need to be done. Below you can find more details regarding that:
+
+httpd is already installed on app server 2. Configure Apache to listen on port 6300.
+
+Configure Apache to add some redirects as mentioned below:
+
+a.) Redirect http://stapp02.stratos.xfusioncorp.com:<Port>/ to http://www.stapp02.stratos.xfusioncorp.com:<Port>/ i.e non www to www. This must be a permanent redirect i.e 301
+
+b.) Redirect http://www.stapp02.stratos.xfusioncorp.com:<Port>/blog/ to http://www.stapp02.stratos.xfusioncorp.com:<Port>/news/. This must be a temporary redirect i.e 302.
+
+
+**#17 Application Security**
+
+We have a backup management application UI hosted on Nautilus's backup server in Stratos DC. That backup management application code is deployed under Apache on the backup server itself, and Nginx is running as a reverse proxy on the same server. Apache and Nginx ports are 3003 and 8091, respectively. We have iptables firewall installed on this server. Make the appropriate changes to fulfill the requirements mentioned below:
+
+We want to open all incoming connections to Nginx's port and block all incoming connections to Apache's port. Also make sure rules are permanent.
+
+
+
+**#18 Linux GPG Encryption**
+
+We have confidential data that needs to be transferred to a remote location, so we need to encrypt that data.We also need to decrypt data we received from a remote location in order to understand its content.
+
+On storage server in Stratos Datacenter we have private and public keys stored /home/*_key.asc. Use those keys to perform the following actions.
+
+Encrypt /home/encrypt_me.txt to /home/encrypted_me.asc.
+
+Decrypt /home/decrypt_me.asc to /home/decrypted_me.txt. (Passphrase for decryption and encryption is kodekloud).
+
+
+**#19 Web Server Security**
+
+During a recent security audit, the application security team of xFusionCorp Industries found security issues with the Apache web server on Nautilus App Server 3 server in Stratos DC. They have listed several security issues that need to be fixed on this server. Please apply the security settings below:
+
+a. On Nautilus App Server 3 it was identified that the Apache web server is exposing the version number. Ensure this server has the appropriate settings to hide the version number of the Apache web server.
+
+b. There is a website hosted under /var/www/html/blog on App Server 3. It was detected that the directory /blog lists all of its contents while browsing the URL. Disable the directory browser listing in Apache config.
+
+c. Also make sure to restart the Apache service after making the changes.
+
+
+**#20 Linux Bash Script**
+
+The production support team of xFusionCorp Industries is working on developing some bash scripts to automate different day to day tasks. One is to create a bash script for taking websites backup. They have a static website running on App Server 2 in Stratos Datacenter, and they need to create a bash script named official_backup.sh which should accomplish the following tasks. (Also remember to place the script under /scripts directory on App Server 2)
+
+a. Create a zip archive named xfusioncorp_official.zip of /var/www/html/official directory.
+
+b. Save the archive in /backup/ on App Server 2. This is a temporary storage, as backups from this location will be clean on weekly basis. Therefore, we also need to save this backup archive on Nautilus Backup Server.
+
+c. Copy the created archive to Nautilus Backup Server server in /backup/ location.
+
+d. Please make sure script won't ask for password while copying the archive file. Additionally, the respective server user (for example, tony in case of App Server 1) must be able to run it.
+
+
+**#21 Linux Find Command**
+
+During a routine security audit, the team identified an issue on the Nautilus App Server. Some malicious content was identified within the website code. After digging into the issue they found that there might be more infected files. Before doing a cleanup they would like to find all similar files and copy them to a safe location for further investigation. Accomplish the task as per the following requirements:
+
+a. On App Server 2 at location /var/www/html/blog find out all files (not directories) having .js extension.
+
+b. Copy all those files along with their parent directory structure to location /blog on same server.
+
+c. Please make sure not to copy the entire /var/www/html/blog directory content.
+
+
+
+**#22 Linux LogRotate**
+
+The Nautilus DevOps team is ready to launch a new application, which they will deploy on app servers in Stratos Datacenter. They are expecting significant traffic/usage of haproxy on app servers after that. This will generate massive logs, creating huge log files. To utilise the storage efficiently, they need to compress the log files and need to rotate old logs. Check the requirements shared below:
+
+a. In all app servers install haproxy package.
+
+b. Using logrotate configure haproxy logs rotation to monthly and keep only 3 rotated logs.
+
+(If by default log rotation is set, then please update configuration as needed)
