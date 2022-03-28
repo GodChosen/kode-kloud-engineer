@@ -190,3 +190,118 @@ a. In all app servers install haproxy package.
 b. Using logrotate configure haproxy logs rotation to monthly and keep only 3 rotated logs.
 
 (If by default log rotation is set, then please update configuration as needed)
+
+
+**#23 Add Response Headers in Apache**
+
+We are working on hardening Apache web server on all app servers. As a part of this process we want to add some of the Apache response headers for security purpose. We are testing the settings one by one on all app servers. As per details mentioned below enable these headers for Apache:
+
+Install httpd package on App Server 3 using yum and configure it to run on 6300 port, make sure to start its service.
+
+Create an index.html file under Apache's default document root i.e /var/www/html and add below given content in it.
+
+Welcome to the xFusionCorp Industries!
+
+Configure Apache to enable below mentioned headers:
+
+X-XSS-Protection header with value 1; mode=block
+
+X-Frame-Options header with value SAMEORIGIN
+
+X-Content-Type-Options header with value nosniff
+
+Note: You can test using curl on the given app server as LBR URL will not work for this task.
+
+**#24 Configure Local yum repos**
+
+The Nautilus production support team and security team had a meeting last month in which they decided to use local yum repositories for maintaing packages needed for their servers. For now they have decided to configure a local yum repo on Nautilus Backup Server. This is one of the pending items from last month, so please configure a local yum repository on Nautilus Backup Server as per details given below.
+
+a. We have some packages already present at location /packages/downloaded_rpms/ on Nautilus Backup Server.
+
+b. Create a yum repo named yum_local and make sure to set Repository ID to yum_local. Configure it to use package's location /packages/downloaded_rpms/.
+
+c. Install package samba from this newly created repo.
+
+
+**#25 Linux Postfix Mail Server**
+
+xFusionCorp Industries has planned to set up a common email server in Stork DC. After several meetings and recommendations they have decided to use postfix as their mail transfer agent and dovecot as an IMAP/POP3 server. We would like you to perform the following steps:
+
+Install and configure postfix on Stork DC mail server.
+
+Create an email account mariyam@stratos.xfusioncorp.com identified by BruCStnMT5.
+
+Set its mail directory to /home/mariyam/Maildir.
+
+Install and configure dovecot on the same server.
+
+
+**#26 Install And Configure SFTP**
+
+Some of the developers from Nautilus project team have asked for SFTP access to at least one of the app server in Stratos DC. After going through the requirements, the system admins team has decided to configure the SFTP server on App Server 1 server in Stratos Datacenter. Please configure it as per the following instructions:
+
+a. Create an SFTP user rose and set its password to Rc5C9EyvbU.
+
+b. Password authentication should be enabled for this user.
+
+c. Set its ChrootDirectory to /var/www/nfsshare.
+
+d. SFTP user should only be allowed to make SFTP connections.
+
+
+**#28 IPtables Installation And Configuration**
+
+We have one of our websites up and running on our Nautilus infrastructure in Stratos DC. Our security team has raised a concern that right now Apache’s port i.e 8081 is open for all since there is no firewall installed on these hosts. So we have decided to add some security layer for these hosts and after discussions and recommendations we have come up with the following requirements:
+
+Install iptables and all its dependencies on each app host.
+
+Block incoming port 8081 on all apps for everyone except for LBR host.
+
+Make sure the rules remain, even after system reboot.
+
+
+
+**#29 Install and Configure Tomcat Server**
+
+The Nautilus application development team recently finished the beta version of one of their Java-based applications, which they are planning to deploy on one of the app servers in Stratos DC. After an internal team meeting, they have decided to use the tomcat application server. Based on the requirements mentioned below complete the task:
+
+a. Install tomcat server on App Server 1 using yum.
+
+b. Configure it to run on port 8086.
+
+c. There is a ROOT.war file on Jump host at location /tmp. Deploy it on this tomcat server and make sure the webpage works directly on base URL i.e without specifying any sub-directory anything like this http://URL/ROOT .
+
+
+**#30 Linux Process Troubleshooting**
+
+The production support team of xFusionCorp Industries has deployed some of the latest monitoring tools to keep an eye on every service, application, etc. running on the systems. One of the monitoring systems reported about Apache service unavailability on one of the app servers in Stratos DC.
+
+Identify the faulty app host and fix the issue. Make sure Apache service is up and running on all app hosts. They might not hosted any code yet on these servers so you need not to worry about if Apache isn't serving any pages or not, just make sure service is up and running. Also, make sure Apache is running on port 5000 on all app servers.
+
+
+**#31 PAM Authentication For Apache**
+
+We have a requirement where we want to password protect a directory in the Apache web server document root. We want to password protect http://<website-url>:<apache_port>/protected URL as per the following requirements (you can use any website-url for it like localhost since there are no such specific requirements as of now). Setup the same on App server 1 as per below mentioned requirements:
+
+a. We want to use basic authentication.
+
+b. We do not want to use htpasswd file based authentication. Instead, we want to use PAM authentication, i.e Basic Auth + PAM so that we can authenticate with a Linux user.
+
+c. We already have a user ravi with password YchZHRcLkL which you need to provide access to.
+
+d. You can access the website using APP button on the top bar.
+
+
+**#32 Install and Configure PostgreSQL**
+
+The Nautilus application development team has shared that they are planning to deploy one newly developed application on Nautilus infra in Stratos DC. The application uses PostgreSQL database, so as a pre-requisite we need to set up PostgreSQL database server as per requirements shared below:
+
+a. Install and configure PostgreSQL database on Nautilus database server.
+
+b. Create a database user kodekloud_top and set its password to dCV3szSGNA.
+
+c. Create a database kodekloud_db3 and grant full permissions to user kodekloud_top on this database.
+
+d. Make appropriate settings to allow all local clients (local socket connections) to connect to the kodekloud_db3 database through kodekloud_top user using md5 method (Please do not try to encrypt password with md5sum).
+
+e. At the end its good to test the db connection using these new credentials from root user or server's sudo user.
